@@ -2,4 +2,4 @@
 
 Nesse app, utilizei o pacote axios para interagir com a api do GitHub e me retornar dados simples do meu usuário.
 
-![Imagem](https://prnt.sc/YpECdUVb6dCw)
+![Imagem](./public/img-proj)
