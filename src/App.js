@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useEffect, useState} from 'react';
+import api from './services/api';
 
-function App() {
+export default function App() {
+  const [user, setUser] = useState();
+
+//useEffect(() => {      EXEMPLO DE REQUISIÇÃO FEITA COM POST
+//  api
+//    .post("https://minhaapi/novo-usuario",{
+//          nome: “Romulo”,
+//          sobrenome: “Sousa”
+// })
+
+  useEffect(() => {
+    api
+      .get("/users/alissonfr")
+      .then((res) => setUser(res.data))
+      .catch((err) => {
+        console.error("Um erro aconteceu: " + err)
+      });
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  <div className="App">
+    <p>Olá {user?.name}!</p>
+    <p>Usuário: {user?.login}</p>
+    <p>Você tem {user?.followers} seguidores</p>
+    <p>Você mora em {user?.location}</p>
+  </div>
+  )
 }
-
-export default App;
